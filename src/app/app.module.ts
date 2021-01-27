@@ -19,7 +19,6 @@ import { AddNewIssueModalComponent } from './components/dashboardPage/add-new-is
 import { FooterComponent } from './components/footer/footer.component';
 import { IssueListComponent } from './components/dashboardPage/issue-list/issue-list.component';
 import { AuthComponent } from './components/authPage/auth/auth.component';
-import { AuthDialogComponent } from './components/authPage/auth-dialog/auth-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { AuthDialogComponent } from './components/authPage/auth-dialog/auth-dial
     FooterComponent,
     IssueListComponent,
     AuthComponent,
-    AuthDialogComponent,
   ],
   imports: [
     BrowserModule,
