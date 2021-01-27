@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -10,16 +9,17 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class AuthComponent implements OnInit {
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     public auth: AngularFireAuth,
-    private router: Router
-  ) {}
+  ) {
+    if (authService.isLogged) {
+      authService.redirectTo('/dashboard');
+    }
+  }
 
   ngOnInit(): void {}
 
   login() {
-    this.authService.login().then(() => {
-      this.router.navigate(['dashboard']);
-    });
+    this.authService.login();
   }
 }

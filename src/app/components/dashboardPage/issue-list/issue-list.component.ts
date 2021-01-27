@@ -10,7 +10,6 @@ import {
   templateUrl: './issue-list.component.html',
   styleUrls: ['./issue-list.component.scss'],
 })
-
 export class IssueListComponent implements OnInit {
   board: IColumn[];
 

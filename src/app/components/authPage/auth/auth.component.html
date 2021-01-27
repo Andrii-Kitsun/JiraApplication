@@ -1,4 +1,9 @@
-<div class="login-button" *ngIf="!(auth.user | async)">
+<!-- <div class="login-button" *ngIf="!(auth.user | async)">
+  <button mat-raised-button color="primary" (click)="login()">
+    Login with Google
+  </button>
+</div> -->
+<div class="login-button" *ngIf="!authService.isLogged">
   <button mat-raised-button color="primary" (click)="login()">
     Login with Google
   </button>
