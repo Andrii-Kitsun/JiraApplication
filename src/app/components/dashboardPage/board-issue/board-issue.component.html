@@ -1,0 +1,12 @@
+<div class="issue" (click)="editIssue()" matTooltip="Edit issue">
+  <div class="issue__header">
+    <p class="issue__title">{{ issueItem.title }}</p>
+
+    <mat-divider [inset]="true" class="issue__separator"></mat-divider>
+
+    <p>Type: {{ issueItem.type }}</p>
+    <p>Assigned on: {{ issueItem.assignee.name }}</p>
+    <p>Due date: {{ issueItem.dueDate }}</p>
+  </div>
+</div>
+

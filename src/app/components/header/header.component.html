@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="header">
+  <button mat-icon-button aria-label="Menu icon">
+    <mat-icon>task_alt</mat-icon>
+  </button>
+  <span>Jira Application</span>
+
+  <span class="header__spacer"></span>
+
+  <div *ngIf="auth.user | async as user" class="header__user">
+    <div
+      class="header__user-image"
+      [style.background-image]="'url(' + user.photoURL + ')'"
+    ></div>
+    <span class="header__user-name">{{ user.displayName }}</span>
+    <button mat-icon-button (click)="logout()">
+      <mat-icon>login</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

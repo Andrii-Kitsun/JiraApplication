@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "jiraapp-angular": {
+      "hosting": {
+        "JiraApp": [
+          "jiraapp-angular"
+        ]
+      }
+    }
+  }
+}

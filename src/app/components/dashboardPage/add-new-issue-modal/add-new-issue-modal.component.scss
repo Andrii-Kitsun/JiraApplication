@@ -1,0 +1,23 @@
+.modal__content {
+  padding-top: 15px;
+  flex-wrap: wrap;
+}
+
+.modal__line {
+  min-width: 200px;
+  max-width: 650px;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 250px;
+  font-size: 1.2em;
+}
+
+.space {
+  margin-right: 50px;
+}
+
+.modal-full-width {
+  width: 100%;
+}

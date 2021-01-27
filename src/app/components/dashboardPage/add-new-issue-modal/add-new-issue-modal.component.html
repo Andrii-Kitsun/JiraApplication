@@ -1,0 +1,139 @@
+<h2 *ngIf="!modalWindowData.isEditModal; else editTitle" mat-dialog-title>
+  Create issue
+</h2>
+<ng-template #editTitle>
+  <h2 mat-dialog-title>Edit issue</h2>
+</ng-template>
+
+<mat-dialog-content class="modal__content">
+  <mat-accordion multi>
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Issue details</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="modal__line">
+        <mat-form-field class="modal__title space">
+          <mat-label>Title</mat-label>
+          <input
+            matInput
+            placeholder="Issue title"
+            [formControl]="titleRequired"
+            required
+            [(ngModel)]="issue.title"
+          />
+          <mat-error *ngIf="titleRequired.invalid">{{
+            getErrorMessage()
+          }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <mat-select [(value)]="issue.columnTitle">
+            <mat-option *ngFor="let state of issueStates" [value]="state.id">
+              {{ state.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="modal__line">
+        <mat-form-field class="space">
+          <mat-label>Type</mat-label>
+          <mat-select [(value)]="issue.type">
+            <mat-option
+              *ngFor="let issueType of issueTypes"
+              [value]="issueType.id"
+            >
+              {{ issueType.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Assignee</mat-label>
+          <mat-select
+            [value]="modalWindowData.isEditModal ? issue.assignee.id : ''"
+          >
+            <mat-option
+              *ngFor="let user of users | async"
+              [value]="user.id"
+              (click)="selectUser(user)"
+            >
+              {{ user.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="modal__line">
+        <mat-form-field class="space">
+          <mat-label>Priority</mat-label>
+          <mat-select [(value)]="issue.priority">
+            <mat-option
+              *ngFor="let priority of priorityArr"
+              [value]="priority.id"
+            >
+              {{ priority.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Due date</mat-label>
+          <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Description</mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div class="modal__line">
+        <mat-form-field class="modal-full-width">
+          <mat-label>Add description...</mat-label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            [(ngModel)]="issue.description"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-divider></mat-divider>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+    <button
+      mat-button
+      cdkFocusInitial
+      mat-dialog-close
+      (click)="createIssue()"
+      *ngIf="!modalWindowData.isEditModal; else editButton"
+    >
+      Create
+    </button>
+    <ng-template #editButton>
+      <button mat-button [mat-dialog-close]="true" (click)="deleteIssue()">
+        Delete
+      </button>
+      <button
+        mat-button
+        mat-dialog-close
+        cdkFocusInitial
+        (click)="editIssue()"
+        l
+      >
+        Edit
+      </button>
+    </ng-template>
+  </mat-dialog-actions>
+</mat-dialog-content>

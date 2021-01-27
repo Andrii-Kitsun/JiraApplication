@@ -1,0 +1,16 @@
+<mat-card class="card">
+  <mat-card-header class="card__header">
+    <mat-card-title>{{ columnData.title }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-board-issue *ngFor="let issue of columnData.issues | async" [issueItem]="issue"></app-board-issue>
+  </mat-card-content>
+
+  <mat-card-actions class="card__actions">
+    <button mat-button class="card__button-create" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+      Create issue
+    </button>
+  </mat-card-actions>
+</mat-card>
